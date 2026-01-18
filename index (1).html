@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackday: Birthday Edition 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #EC0065;
+            --secondary: #00D084;
+            --accent: #FF00CC;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --border: #e9ecef;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(236, 0, 101, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '🎂 🎉 🖥️';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        header .event-date {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        header .intro {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            line-height: 1.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            margin: 4rem 0;
+            padding: 3rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* Card Tiers */
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(236, 0, 101, 0.15);
+            border-color: var(--primary);
+        }
+
+        .tier-time {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-card h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .tier-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Tier badge */
+        .tier-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Submission Section */
+        .submission-section {
+            background: linear-gradient(135deg, rgba(236, 0, 101, 0.1) 0%, rgba(0, 208, 132, 0.1) 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 2px dashed var(--primary);
+        }
+
+        .submission-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .submission-note {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(236, 0, 101, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(236, 0, 101, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .faq-item p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .faq-item strong {
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.85;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Emphasis boxes */
+        .highlight {
+            background: linear-gradient(135deg, rgba(236, 0, 101, 0.1) 0%, rgba(0, 208, 132, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin: 1.5rem 0;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            header .intro {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 1rem 1.5rem;
+            }
+
+            header::before {
+                font-size: 1.5rem;
+                right: 1rem;
+                top: 0.5rem;
+            }
+        }
+
+        /* Utility */
+        .emoji {
+            font-size: 2rem;
+            margin: 0 0.3rem;
+        }
+
+        .main-emphasis {
+            color: white;
+            font-weight: 900;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Hackday: Birthday Edition 🎉</h1>
+        <p class="subtitle">Privately run Hack Club birthday build for Shayaan</p>
+        <div class="event-date">📅 21st of January, 3:00 PM</div>
+        <p class="intro">
+            Create a birthday-themed project or message — <span class="main-emphasis">your submissions will be made into handcrafted cards and sent to Shayaan</span> to celebrate his birthday!
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Card Tiers Section -->
+        <section id="tiers">
+            <h2>🎨 Card Tiers</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.05rem;">
+                Choose your card tier — <span class="main-emphasis">each submission becomes part of Shayaan's birthday gift</span>
+            </p>
+            
+            <div class="tiers">
+                <div class="tier-card">
+                    <span class="tier-badge">Quick</span>
+                    <div class="tier-time">⏱️ 30 min</div>
+                    <h3>Printed Card</h3>
+                    <p>
+                        Create a heartfelt message with <strong>1 color image</strong>. Perfect for a personal touch and quick submission.
+                    </p>
+                </div>
+
+                <div class="tier-card">
+                    <span class="tier-badge">Popular</span>
+                    <div class="tier-time">⏱️ 45 min</div>
+                    <h3>Store-Bought Card</h3>
+                    <p>
+                        Personalize a store-bought card with <strong>1 color picture and a heartfelt message</strong>. Easy and impactful.
+                    </p>
+                </div>
+
+                <div class="tier-card">
+                    <span class="tier-badge">Premium</span>
+                    <div class="tier-time">⏱️ 60 min</div>
+                    <h3>Premium Store Card + Candy</h3>
+                    <p>
+                        Upgrade to a premium store-bought card with <strong>3 colored pictures, a message, plus candy</strong>. Make it extra special!
+                    </p>
+                </div>
+
+                <div class="tier-card">
+                    <span class="tier-badge">Custom</span>
+                    <div class="tier-time">⏱️ 90 min</div>
+                    <h3>Custom Canva Card + Candy</h3>
+                    <p>
+                        Design a completely custom card using Canva, print it entirely, and include candy. Maximum creativity!
+                    </p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                ✨ <strong>Every single card you create or message you submit will be collected and sent directly to Shayaan for his birthday!</strong>
+            </div>
+        </section>
+
+        <!-- Submission Section -->
+        <section id="submit" class="submission-section">
+            <h2>🚀 Ready to Create?</h2>
+            <p class="submission-note">
+                Submit your project, artwork, or birthday message below. <strong>All submissions become part of Shayaan's handcrafted birthday card collection!</strong>
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSciFw_rdn7OVFpFYubEa8-uu8xmnJDmPD579WfGwLtEo7a_JA/viewform?usp=publish-editor" class="submit-btn" target="_blank" rel="noopener noreferrer">
+                Submit Your Project & Message
+            </a>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <h3>Is this event free?</h3>
+                <p>
+                    Yes! This is a private, community-run event. All you need to do is show up, build something amazing, and submit your work. It's completely free to participate!
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What project is needed?</h3>
+                <p>
+                    <strong>Any project works!</strong> Build a website, create an interactive experience, write an article, make a game — anything birthday-themed for Shayaan. Your project can be as simple or as complex as you want. If you're not sure what to build, ask mentors at the event for inspiration!
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do I submit my project or message?</h3>
+                <p>
+                    Click the <strong>"Submit Your Project & Message"</strong> button above, fill out the Google Form, and share your work. Include a link to your project, your name, and a personal message for Shayaan. We'll take care of the rest!
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do I track my time?</h3>
+                <p>
+                    Use <strong>Hackatime</strong> just like you would for a normal Hack Club event. Start your timer when you begin, and log your hours as usual. This helps us organize and track submissions by tier!
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I send presents or anything else?</h3>
+                <p>
+                    Absolutely! If you'd like to send a physical gift along with your card, you can mail it to:<br><br>
+                    <strong>
+                        Dulwich Delivery Office<br>
+                        76 Alleyn Park<br>
+                        London, SE21 8SG
+                    </strong><br><br>
+                    Make sure to mark it clearly with Shayaan's name. Your contribution is already amazing — the card is the main gift! 🎁
+                </p>
+            </div>
+
+            <div class="highlight" style="margin-top: 2rem;">
+                💡 <strong>Remember:</strong> The entire point of this event is to create beautiful cards and messages that celebrate Shayaan's birthday. Have fun, be creative, and enjoy building together!
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            🎉 <strong>Hackday: Birthday Edition</strong> — Celebrate Shayaan's Birthday with Code & Creativity
+        </p>
+        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">
+            This event is privately run and not officially sponsored by Hack Club. 
+            <a href="https://hackclub.com" target="_blank" rel="noopener noreferrer">Learn more about Hack Club →</a>
+        </p>
+    </footer>
+</body>
+</html>
